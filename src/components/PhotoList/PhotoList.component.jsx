@@ -4,17 +4,8 @@ import Photo from "../Photo/Photo.compnent";
 const PhotoList = (props) => {
   const results = props.data;
   let pictures = results.map(
-    (picture) => (
-      <Photo
-        id={picture.id}
-        secret={picture.secret}
-        server={picture.server}
-        farm={picture.farm}
-      />
-    )
-    // console.log(picture.secret);
-  );
-  // console.log(pictures);
+    (picture) => <Photo urlPath={`https://farm${picture.farm}.staticflickr.com/${picture.server}/${picture.id}_${picture.secret}.jpg`} desc={picture.title} id={picture.id}/>);
+console.log(results) 
 
   return (
     <div className="photo-container">

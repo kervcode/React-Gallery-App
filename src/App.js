@@ -14,9 +14,13 @@ class App extends Component {
   };
 
   componentDidMount() {
+    this.performSearch();
+  }
+
+  performSearch = (query) => {
     axios
       .get(
-        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apikey}&tags=papaya&per_page=24&format=json&nojsoncallback=1`
+        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apikey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
       )
       .then((responseData) => {
         this.setState({ photo: responseData.data.photos.photo });
@@ -26,10 +30,11 @@ class App extends Component {
         console.log("an error occured", error);
       });
   }
+
   render() {
     return (
       <div className="container">
-        <SearchForm />
+        <SearchForm onSearch={this.performSearch}/>
         <Nav />
         <PhotoList data={this.state.photo} />
         <NotFound />
