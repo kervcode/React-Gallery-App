@@ -1,21 +1,21 @@
 import React from "react";
 import "../../css/index.css";
+import PhotoList from "../PhotoList/PhotoList.component";
 
-class Photo extends React.Component {
-  render() {
-    return (
-      <div className="photo-container">
-        <h2>Results</h2>
-        <ul>
-          <li>
-            <img
-              src="https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg"
-              alt=""
-            />
-          </li>
-        </ul>
-      </div>
-    );
-  }
-}
+const Photo = (props) => {
+  const url = {//farm{props.farm}.staticflickr.com/{props.server}/{props.id}_{props.secret}.jpg}
+  // console.log(props);
+  return (
+    <li key={props.id}>
+      <img
+        // src={
+        //   https://farm{props.farm}.staticflickr.com/{props.server}/{props.id}_{props.secret}.jpg"
+        // }
+        src=htps{url}
+        alt=""
+      />
+    </li>
+  );
+};
+
 export default Photo;
