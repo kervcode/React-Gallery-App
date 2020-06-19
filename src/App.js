@@ -7,6 +7,7 @@ import NotFound from "./components/NotFound/NotFound.component";
 import "./App.css";
 import apikey from "./config";
 import PhotoList from "./components/PhotoList/PhotoList.component";
+import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -29,16 +30,18 @@ class App extends Component {
       .catch((error) => {
         console.log("an error occured", error);
       });
-  }
+  };
 
   render() {
     return (
-      <div className="container">
-        <SearchForm onSearch={this.performSearch}/>
-        <Nav />
-        <PhotoList data={this.state.photo} />
-        <NotFound />
-      </div>
+      <BrowserRouter>
+        <div className="container">
+          <SearchForm onSearch={this.performSearch} />
+          <Route path="" component={Nav} />
+          <PhotoList data={this.state.photo} />
+          <NotFound />
+        </div>
+      </BrowserRouter>
     );
   }
 }
