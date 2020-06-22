@@ -2,20 +2,22 @@ import React, { Component } from "react";
 import axios from "axios";
 import SearchForm from "./components/SearchForm/searchForm.component";
 import Nav from "./components/Nav/NavComponent";
-import Photo from "./components/Photo/Photo.compnent";
 import NotFound from "./components/NotFound/NotFound.component";
 import "./App.css";
 import apikey from "./config";
 import PhotoList from "./components/PhotoList/PhotoList.component";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 class App extends Component {
   state = {
     photo: [],
+    catPhotos: [],
+    dogPhotos: [],
+    computerPhotos: [],
   };
 
   componentDidMount() {
-    this.performSearch();
+    this.performSearch("culture");
   }
 
   performSearch = (query) => {
@@ -25,7 +27,7 @@ class App extends Component {
       )
       .then((responseData) => {
         this.setState({ photo: responseData.data.photos.photo });
-        // console.log(this.state.photo);
+        console.log(this.state);
       })
       .catch((error) => {
         console.log("an error occured", error);
@@ -37,9 +39,27 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
           <SearchForm onSearch={this.performSearch} />
-          <Route path="" component={Nav} />
-          <PhotoList data={this.state.photo} />
-          <NotFound />
+          <Nav />
+          <Switch>
+            <Route
+              exact
+              path={"/"}
+              render={() => <PhotoList data={this.state.photo} />}
+            />
+            <Route
+              path="/cats"
+              render={() => <PhotoList data={this.state.photo} />}
+            />
+            <Route
+              path="/dogs"
+              render={() => <PhotoList data={this.state.photo} />}
+            />
+            <Route
+              path="/computers"
+              render={() => <PhotoList data={this.state.photo} />}
+            />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </BrowserRouter>
     );
