@@ -6,18 +6,21 @@ import NotFound from "./components/NotFound/NotFound.component";
 import "./App.css";
 import apikey from "./config";
 import PhotoList from "./components/PhotoList/PhotoList.component";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 class App extends Component {
   state = {
     photo: [],
-    catPhotos: [],
-    dogPhotos: [],
-    computerPhotos: [],
+    parkPhotos: [],
+    bridgePhotos: [],
+    flowerPhotos: [],
   };
 
   componentDidMount() {
-    this.performSearch("culture");
+    this.performSearch();
+    this.performSearch("parks");
+    this.performSearch("flowers");
+    this.performSearch("bridges");
   }
 
   performSearch = (query) => {
@@ -26,8 +29,16 @@ class App extends Component {
         `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apikey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
       )
       .then((responseData) => {
-        this.setState({ photo: responseData.data.photos.photo });
-        console.log(this.state);
+        if (query === "parks") {
+          this.setState({ parkPhotos: responseData.data.photos.photo });
+        } else if (query === "bridges") {
+          this.setState({ bridgePhotos: responseData.data.photos.photo });
+        } else if (query === "flowers") {
+          this.setState({ flowerPhotos: responseData.data.photos.photo });
+        } else {
+          this.setState({ photo: responseData.data.photos.photo });
+        }
+        console.log(query);
       })
       .catch((error) => {
         console.log("an error occured", error);
@@ -35,6 +46,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <BrowserRouter>
         <div className="container">
@@ -46,17 +58,20 @@ class App extends Component {
               path={"/"}
               render={() => <PhotoList data={this.state.photo} />}
             />
+            {/* <Route exact path={"/"} render={() => <Redirect to="/" />}>
+              <PhotoList data={this.state.photo} />
+            </Route> */}
             <Route
-              path="/cats"
-              render={() => <PhotoList data={this.state.photo} />}
+              path="/parks"
+              render={() => <PhotoList data={this.state.parkPhotos} />}
             />
             <Route
-              path="/dogs"
-              render={() => <PhotoList data={this.state.photo} />}
+              path="/bridges"
+              render={() => <PhotoList data={this.state.bridgePhotos} />}
             />
             <Route
-              path="/computers"
-              render={() => <PhotoList data={this.state.photo} />}
+              path="/"
+              render={() => <PhotoList data={this.state.flowerPhotos} />}
             />
             <Route component={NotFound} />
           </Switch>
