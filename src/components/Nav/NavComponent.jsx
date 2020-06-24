@@ -1,7 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import PhotoList from "../PhotoList/PhotoList.component";
+import { NavLink, Route } from "react-router-dom";
 
-const Nav = () => {
+const Nav = (props) => {
+  console.log(props);
   return (
     <nav className="main-nav">
       <ul>

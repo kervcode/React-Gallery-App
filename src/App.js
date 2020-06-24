@@ -38,7 +38,7 @@ class App extends Component {
         } else {
           this.setState({ photo: responseData.data.photos.photo });
         }
-        console.log(query);
+        // console.log(query);
       })
       .catch((error) => {
         console.log("an error occured", error);
@@ -46,21 +46,18 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <BrowserRouter>
         <div className="container">
           <SearchForm onSearch={this.performSearch} />
-          <Nav />
+          <Nav data={this.state} />
           <Switch>
             <Route
               exact
               path={"/"}
               render={() => <PhotoList data={this.state.photo} />}
             />
-            {/* <Route exact path={"/"} render={() => <Redirect to="/" />}>
-              <PhotoList data={this.state.photo} />
-            </Route> */}
             <Route
               path="/parks"
               render={() => <PhotoList data={this.state.parkPhotos} />}
