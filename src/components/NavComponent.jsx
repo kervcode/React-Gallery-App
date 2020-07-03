@@ -1,15 +1,15 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-
+import { NavLink, Route } from 'react-router-dom'
 
 const Nav = () => {
   return (
-    <nav class="main-nav">
+    
+    <nav className="main-nav">
       <ul>
-        <li><NavLink to="#">Cats</NavLink></li>
-        <li><NavLink to="#">Dogs</NavLink></li>
-        <li><NavLink to="#">Computers</NavLink></li>
-      </ul>
+        <li><NavLink to="cats">Cats</NavLink></li>
+        <li><NavLink to="dogs">Dogs</NavLink></li>
+        <li><NavLink to="computers">Computers</NavLink></li>
+      </ul>        
   </nav>
   )
 };
