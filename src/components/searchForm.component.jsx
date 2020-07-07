@@ -8,11 +8,14 @@ class SearchBox extends Component {
     };
   }
 
-  handleSubmit = (e) => {
+  onSearchChange = (e) => {
+    this.setState({ searchText: e.target.value });
+  };
+
+  handleSummit = (e) => {
     e.preventDefault();
-    let search = this.search.value;
-    let path = `/${search}`;
-    // this.props.history.push(path);
+    this.props.onSearch(this.query.value);
+    e.currentTarget.reset();
   };
 
   render() {
