@@ -15,14 +15,14 @@ class PhotoList extends Component {
   }
 
   componentDidMount() {
-    this.performSearch("sunset");
+    const search = this.props.location.search.replace('?search=', '');
+    this.performSearch(search)
     this.performSearch("boats");
     this.performSearch("rivers");
     this.performSearch("beaches");
   }
 
   performSearch = (query) => {
-    // console.log(query);
     axios
       .get(
         `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apikey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
@@ -46,12 +46,16 @@ class PhotoList extends Component {
   };
 
   render() {
-    let results;
+    let results = [];
     let path = this.props.match.path;
     let m = this.props;
     console.log(m);
     if (path === "/") {
-      results = this.state.searchResults;
+      if(this.props.location.search){
+        results = this.state.searchResults;
+      } else {
+        this.props.history.push("/boats")
+      }
     } else if (path === "/boats") {
       results = this.state.boats;
     } else if (path === "/rivers") {

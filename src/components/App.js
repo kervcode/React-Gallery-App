@@ -12,13 +12,14 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="container">
-        <SearchBox on />
+        <SearchBox />
         <Nav />
         <Switch>
           <Route exact path="/" component={PhotoList} />
           <Route path="/boats" component={PhotoList} />
           <Route path="/rivers" component={PhotoList} />
           <Route path="/beaches" component={PhotoList} />
+          {/* 404 like route */}
           <Route component={NotFound} />
         </Switch>
       </div>

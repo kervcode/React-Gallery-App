@@ -6,21 +6,16 @@ class SearchBox extends Component {
     this.state = {
       searchText: "",
     };
+    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
   onSearchChange = (e) => {
     this.setState({ searchText: e.target.value });
   };
 
-  handleSummit = (e) => {
-    e.preventDefault();
-    this.props.onSearch(this.query.value);
-    e.currentTarget.reset();
-  };
-
   render() {
     return (
-      <form className="search-form" onSubmit={this.handleSubmit}>
+      <form action='http://localhost:3000/' className="search-form" onSubmit={this.handleSubmit}>
         <input
           type="text"
           name="search"
