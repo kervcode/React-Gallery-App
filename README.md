@@ -20,11 +20,12 @@ To complete this project, I used :
 
 5. get to an [***apikey***](https://www.flickr.com/services/apps/create/apply/) from the Flickr. 
   - Open your code editor, create a file named ***config.js*** in the src folder. 
-    - replace the API key in the config like the example below replacing the x with you with your actual API
+    - Add the code below in the config by replacing the Xs with you with your actual API key then save.
     
     ```
     const apikey = "xxxxxxxxxxxxxxxx";
     export default apikey;
     ```
+    
 6. in the terminal of your computer run "npm start" to start/lunch the App. 
   - Running npm start should open your web browser and lunch the App. If it did not, open your web browser then type 'localhost:3000' to start the App.
