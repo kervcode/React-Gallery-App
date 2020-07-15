@@ -20,7 +20,7 @@ To complete this project, I used :
 
 5. get to an [***apikey***](https://www.flickr.com/services/apps/create/apply/) from the Flickr. 
   - Open your code editor, create a file named ***config.js*** in the src folder. 
-    - Add the code below in the config by replacing the Xs with you with your actual API key then save.
+    - Add the code below in the config.js file by replacing the Xs with you with your actual API key then save.
     
     ```
     const apikey = "xxxxxxxxxxxxxxxx";
