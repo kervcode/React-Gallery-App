@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 
 class SearchBox extends Component {
-  constructor() {
-    super();
-    this.state = {
+  state = {
       searchText: "",
     };
-    this.onSearchChange = this.onSearchChange.bind(this);
-  }
+
+  
 
   onSearchChange = (e) => {
     this.setState({ searchText: e.target.value });
@@ -15,7 +13,7 @@ class SearchBox extends Component {
 
   render() {
     return (
-      <form action='http://localhost:3000/' className="search-form" onSubmit={this.handleSubmit}>
+      <form action='https://kervcode.github.io/react-gallery-app/' className="search-form" onSubmit={this.handleSubmit}>
         <input
           type="text"
           name="search"
